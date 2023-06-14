@@ -8,9 +8,26 @@ class Loading {
     $target.appendChild(this.$loading);
 
     this.data = {
-      show: true
+      show: false
     }
 
+    this.render();
+  }
+
+  show() {
+    this.setState({
+      show: true
+    });
+  }
+
+  hide() {
+    this.setState({
+      show: false
+    });
+  }
+
+  setState(nextData) {
+    this.data = nextData;
     this.render();
   }
 
@@ -22,7 +39,7 @@ class Loading {
         </div>
       `
     } else {
-      
+      this.$loading.innerHTML = ``
     }
   }
 }
