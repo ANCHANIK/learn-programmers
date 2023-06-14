@@ -23,7 +23,7 @@ class SearchInput {
     const $randomButton = document.createElement("button");
     this.$randomButton = $randomButton;
     this.$randomButton.className = 'RandomButton';
-    this.$randomButton.textContent = '랜덤고양이';
+    this.$randomButton.textContent = '랜덤🐱';
 
     $wrapper.appendChild($randomButton);
 

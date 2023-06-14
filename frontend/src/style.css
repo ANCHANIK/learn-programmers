@@ -10,6 +10,11 @@
   --textColor: #fff;
 }
 
+:root[color-mode="light"] {
+  --background: #fff;
+  --textColor: #000;
+}
+
 body {
   background-color: var(--background);
   color: var(--textColor);
@@ -96,7 +101,7 @@ ol,ul{
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--background);
   border: 1px solid #eee;
   border-radius: 5px;
 }
