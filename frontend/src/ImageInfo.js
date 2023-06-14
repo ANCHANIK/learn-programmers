@@ -18,9 +18,21 @@ class ImageInfo {
     this.render();
   }
 
+  async showDetail(data) {
+    // api 상세 정보 요청
+    await api.fetchCatDetail(data.cat.id).then(( {data} ) => {
+      // 정보 업데이트
+      this.setState({
+        visible: true,
+        cat: data
+      })
+
+    })
+  }
+
   render() {
     if (this.data.visible) {
-      const { name, url, temperament, origin } = this.data.image;
+      const { name, url, temperament, origin } = this.data.cat;
 
       this.$imageInfo.innerHTML = `
         <div class="content-wrapper">
