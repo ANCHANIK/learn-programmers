@@ -25,6 +25,9 @@ class App {
           // 로딩 hide
           this.Loading.hide();
 
+          // 마지막 검색 내역 로컬에 저장
+          this.saveResult(data);
+
         });
       },
       onRendomSearch: () => {
@@ -55,11 +58,23 @@ class App {
         image: null
       }
     });
+
+    this.init();
   }
 
   setState(nextData) {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
+  }
+
+  saveResult(result) {
+    localStorage.setItem('lastResult', JSON.stringify(result));
+  }
+
+  init() {
+    const lastResult = localStorage.getItem('lastResult') === null ? [] : JSON.parse(localStorage.getItem('lastResult'));
+    console.log(lastResult);
+    this.setState(lastResult);
   }
 }
