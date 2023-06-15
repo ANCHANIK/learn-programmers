@@ -36,7 +36,7 @@ class App {
           this.setState(data);
           this.Loading.hide();
         });
-      }
+      },
     });
 
     this.searchResult = new SearchResult({
@@ -74,7 +74,6 @@ class App {
 
   init() {
     const lastResult = localStorage.getItem('lastResult') === null ? [] : JSON.parse(localStorage.getItem('lastResult'));
-    console.log(lastResult);
     this.setState(lastResult);
   }
 }

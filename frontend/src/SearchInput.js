@@ -12,6 +12,8 @@ class SearchInput {
     $searchInput.className = "SearchInput";
     $wrapper.appendChild($searchInput);
 
+    
+
     // keyup 과 keypress 차이
     $searchInput.addEventListener("keypress", e => {
       if (e.key === 'Enter') {
@@ -34,6 +36,10 @@ class SearchInput {
     $randomButton.addEventListener("click", e => {
       onRendomSearch();
     });
+
+    // 검색 단어
+    const lastSearchWord = localStorage.getItem('keywordHistory') !== null && localStorage.getItem('keywordHistory').split('')[0];
+    if (lastSearchWord) this.$searchInput.value = lastSearchWord;
 
     this.KeywordHistory = new KeywordHistory({
       $target,
