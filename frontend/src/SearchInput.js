@@ -12,12 +12,16 @@ class SearchInput {
     $searchInput.className = "SearchInput";
     $wrapper.appendChild($searchInput);
 
-    $searchInput.addEventListener("keyup", e => {
-      if (e.keyCode === 13) {
+    // keyup 과 keypress 차이
+    $searchInput.addEventListener("keypress", e => {
+      if (e.key === 'Enter') {
         onSearch(e.target.value);
+
+        // 최근 keyword 저장
+        this.KeywordHistory.addKeyword(e.target.value);
+
       }
     });
-
 
     //랜덤버튼
     const $randomButton = document.createElement("button");
@@ -31,7 +35,11 @@ class SearchInput {
       onRendomSearch();
     });
 
-    //console.log("SearchInput created.", this);
+    this.KeywordHistory = new KeywordHistory({
+      $target,
+      onSearch
+    });
+
   }
   render() {}
 }
