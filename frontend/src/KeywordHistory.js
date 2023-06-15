@@ -16,7 +16,6 @@ class KeywordHistory {
 
     init() {
         const data = this.getHistory();
-        console.log(data);
         this.setState(data);
     }
 
