@@ -30,6 +30,14 @@ class ImageInfo {
     })
   }
 
+  // 모달 닫기
+  closeImageInfo() {
+    this.setState({
+      visible: false,
+      cat: undefined
+    })
+  }
+
   render() {
     if (this.data.visible) {
       const { name, url, temperament, origin } = this.data.cat;
@@ -47,6 +55,21 @@ class ImageInfo {
           </div>
         </div>`;
       this.$imageInfo.style.display = "block";
+      
+      // esc 눌렀을때
+      document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+          this.closeImageInfo();
+        }
+      });
+
+      // 모달 외부 || x버튼 클릭시
+      this.$imageInfo.addEventListener('click', (e) => {
+        if (e.target.className === "ImageInfo" || e.target.className === "close") {
+          this.closeImageInfo();
+        }
+      })
+
     } else {
       this.$imageInfo.style.display = "none";
     }

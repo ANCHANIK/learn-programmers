@@ -110,6 +110,10 @@ ol,ul{
   width: 100%;
 }
 
+.ImageInfo .content-wrapper .close {
+  cursor: pointer;
+}
+
 .DarkModeToggle {
   width: 30px;
   height: 30px;
