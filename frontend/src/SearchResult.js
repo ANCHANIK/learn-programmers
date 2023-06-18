@@ -47,7 +47,6 @@ class SearchResult {
   }
 
   listObserver = new IntersectionObserver((items, observer) => {
-    console.log(items);
     items.forEach(item => {
       // item이 화면에 보일 때
       if (item.isIntersecting) {
@@ -56,16 +55,13 @@ class SearchResult {
         item.target.querySelector('img').src = item.target.querySelector('img').dataset.src;
 
         // 마지막 요소를 찾아낸다
-        console.log(this.data.length)
         let dataIndex = Number(item.target.dataset.index);
-        console.log(dataIndex);
         // 마지막 요소라면? nextPage로 호출
         if ( (dataIndex + 1) === this.data.length) {
           this.onNextPage();
         }
 
       }
-      console.log(item.isIntersecting);
     })
   })
 
