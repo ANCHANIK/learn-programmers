@@ -22,7 +22,7 @@ class App {
         // 로딩 show
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
-          this.setState(data);
+          this.setState(data ? data : []); // refactor
           // 로딩 hide
           this.Loading.hide();
 
