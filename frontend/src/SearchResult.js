@@ -3,7 +3,7 @@ class SearchResult {
   data = null;
   onClick = null;
 
-  constructor({ $target, initialData, onClick }) {
+  constructor({ $target, initialData, onClick, onNextPage }) {
     const $wrapper = document.createElement('section');
     this.$searchResult = document.createElement("ul");
     this.$searchResult.className = "SearchResult";
@@ -12,6 +12,7 @@ class SearchResult {
 
     this.data = initialData;
     this.onClick = onClick;
+    this.onNextPage = onNextPage;
 
     this.render();
   }
@@ -19,6 +20,30 @@ class SearchResult {
   setState(nextData) {
     this.data = nextData;
     this.render();
+  }
+
+  // 스크롤 마지막 요소 true || false (refactor 예정)
+  isElementInViewpor(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // scroll Event (refactor 예정)
+  applyEventElement = (items) => {
+    document.addEventListener('scroll', () => {
+      items.forEach((el, index) => {
+        
+        // 마지막 요소 도출
+        if (this.isElementInViewpor(el) && (items.length - 1 === index) ) {
+          this.onNextPage();
+        }
+      })
+    })
   }
 
   render() {
@@ -37,5 +62,8 @@ class SearchResult {
         this.onClick(this.data[index]);
       });
     });
+
+    let listItems = this.$searchResult.querySelectorAll(".item");
+    this.applyEventElement(listItems);
   }
 }
