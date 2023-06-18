@@ -1,10 +1,12 @@
-const API_ENDPOINT =
-  "http://localhost:4001";
+import config from "./config.js";
+import error from "./error.js";
 
+const { API_ENDPOINT } = config;
+const { REQUEST_ERROR } = error
 // ERROR 목록화
-const REQUEST_ERROR = {
-  '500': { msg : '요청실패' }
-}
+// const REQUEST_ERROR = {
+//   '500': { msg : '요청실패' }
+// }
 
 const request = async (url) => {
 
@@ -41,3 +43,5 @@ const api = {
     return request(`${API_ENDPOINT}/api/cats/${id}`);
   },
 };
+
+export default api;
