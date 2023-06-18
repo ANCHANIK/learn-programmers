@@ -2,11 +2,6 @@ import config from "./config.js";
 import error from "./error.js";
 
 const { API_ENDPOINT } = config;
-const { REQUEST_ERROR } = error
-// ERROR 목록화
-// const REQUEST_ERROR = {
-//   '500': { msg : '요청실패' }
-// }
 
 const request = async (url) => {
 
@@ -19,7 +14,7 @@ const request = async (url) => {
 
     } else {
       // throw 사용해 요청 실패시 catch 구문으로 전달
-      throw REQUEST_ERROR[result.status];
+      throw error[result.status];
     }
 
   } catch (error) {
