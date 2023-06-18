@@ -1,3 +1,5 @@
+import KeywordHistory from "./KeywordHistory.js";
+
 const TEMPLATE = '<input type="text">';
 
 class SearchInput {
@@ -11,8 +13,6 @@ class SearchInput {
     
     $searchInput.className = "SearchInput";
     $wrapper.appendChild($searchInput);
-
-    
 
     // keyup 과 keypress 차이
     $searchInput.addEventListener("keypress", e => {
@@ -49,3 +49,5 @@ class SearchInput {
   }
   render() {}
 }
+
+export default SearchInput;
