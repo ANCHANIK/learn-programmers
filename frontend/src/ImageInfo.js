@@ -22,14 +22,15 @@ class ImageInfo {
 
   async showDetail(data) {
     // api 상세 정보 요청
-    await api.fetchCatDetail(data.cat.id).then(( {data} ) => {
+    const detailInfo = await api.fetchCatDetail(data.cat.id);
+    if (detailInfo) {
       // 정보 업데이트
       this.setState({
         visible: true,
-        cat: data
-      })
+        cat: detailInfo.data
+      });
 
-    })
+    }
   }
 
   // 모달 닫기
@@ -58,6 +59,7 @@ class ImageInfo {
         </div>`;
       this.$imageInfo.style.display = "block";
       
+      // TODO: keypress, keydown, keyup 차이 리서치
       // esc 눌렀을때
       document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {

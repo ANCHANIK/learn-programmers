@@ -32,6 +32,7 @@ class Loading {
   }
 
   render() {
+    // TODO: 로딩 애니메이션 리서치
     if (this.data.show) {
       this.$loading.innerHTML = `
         <div class="Loading">
